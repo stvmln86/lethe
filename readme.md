@@ -2,22 +2,22 @@
 
 **Lethe** is a command-line note-taking engine, written in Go 1.23 by Stephen Malone. It's designed to let you quickly access and safely store your notes with a simple CLI API, revision tracking and a non-proprietary database format.
 
-```
+```bash
 $ lethe list
 movies
 project-ideas
 todo-2024
 
 $ lethe join movies "[ ] The Godfather"
-$ lethe hist movies
-[0] 2025-03-04 10:11 - initial
-[1] 2025-03-05 22:37 - changed, removed 21 bytes
-[2] 2025-03-06 08:52 - added 18 bytes
-
 $ lethe show movies
 [x] Apocalypse Now
 [x] Dog Day Afternoon
 [ ] The Godfather
+
+$ lethe hist movies
+[0] 2025-03-04 10:11 - initial
+[1] 2025-03-05 22:37 - changed, removed 21 bytes
+[2] 2025-03-06 08:52 - added 18 bytes
 ```
 
 ## Installation
@@ -28,7 +28,7 @@ You can install Lethe using your Go tools...
 go install github.com/stvmln86/lethe@latest
 ```
 
-or download the [latest binary release][rel] for your platform.
+...or download the [latest binary release][rel] for your platform.
 
 ## Configuration
 
@@ -40,97 +40,79 @@ Variable          | Database Path
 `XDG_CONFIG_HOME` | `$XDG_CONFIG_HOME/lethe/lethe.db`
 `HOME`            | `$HOME/.lethe`
 
-You can change locations by changing your environment variables and moving your existing database file to the new location.
+To change the database location, set the appropriate variables and move your existing database file to the new path.
 
 ## Syntax
 
-All note names in Lethe are lowercase and only allow alphanumeric characters, hyphens and underscores. Names are sanitised before use, so attempting to create a note called `My Note 123!` will actually create `my-note-123`.
+All note names in Lethe are lowercase and only allow alphanumeric characters, hyphens and underscores. Names are sanitised before use, so `"My Note 123!"` becomes `"my-note-123"`.
 
 ## Commands
 
-### `list [TEXT]`
+**Search notes by name:**
 
-Print the names of all existing notes, or notes with names containing `TEXT`. The search text is sanitised as per the above naming syntax.
-
-```
+```bash
 $ lethe list
 movies
 project-ideas
 todo-2024
 
-$ lethe list TODO
+$ lethe list 2024
 todo-2024
 ```
 
-### `find TEXT`
+**Search notes by text:**
 
-Print the names of all existing notes containing `TEXT`. The search text is case-insensitive.
-
-```
+```bash
 $ lethe find "godfather"
 movies
 ```
 
-### `show NOTE`
+**Print an existing note:**
 
-Print the body of an existing note.
-
-```
+```bash
 $ lethe show todo-2024
 [ ] Take more notes.
 ```
 
-### `edit NOTE`
+**Edit a new or existing note:**
 
-Open a new or existing note in a temporary file in the default editor (according to `$EDITOR` or `$VISUAL`) and save the resulting changes.
-
-```
+```bash
 $ lethe edit project-ideas
 ```
 
-### `join NOTE LINES...`
+**Append lines to a new or existing note:**
 
-Append one or more lines of text to a new or existing note.
-
-```
+```bash
 $ lethe join project-ideas "iphone app" "movie podcast"
 $ lethe show project-ideas
 iphone app
 movie podcast
 ```
 
-### `make NOTE`
+**Create a new empty note:**
 
-Create a new empty note.
-
-```
+```bash
 $ lethe make new-note
 ```
 
-### `wipe NOTE`
-
-Delete an existing note and all its previous revisions.
+**Delete an existing note:**
 
 ```
 $ lethe wipe old-note
 ```
 
-### `hist NOTE`
+**View an existing note's history:**
 
-Print a list of an existing note's revisions.
-
-```
+```bash
 $ lethe hist movies
 [0] 2025-03-04 10:11 - initial
 [1] 2025-03-05 22:37 - changed, removed 21 bytes
 [2] 2025-03-06 08:52 - added 18 bytes
 ```
 
-### `prev NOTE`
+**Revert an existing note to the previous version:**
 
-Revert an existing note to its previous revision.
-
-```
+```bash
 $ lethe prev movies
 $ lethe hist movies
 [0] 2025-03-04 10:11 - initial
@@ -139,7 +121,7 @@ $ lethe hist movies
 
 ## Contributing
 
-Please submit all bug reports and feature requests to the issue tracker, thank you.
+Please submit all bug reports and feature requests to the issue tracker.
 
 [rel]: https://github.com/stvmln86/lethe/releases/latest
 [sql]: https://www.sqlite.org/
