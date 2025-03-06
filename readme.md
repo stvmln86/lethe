@@ -36,7 +36,15 @@ or download the latest binary for your platform.
 
 ## Configuration
 
-`TODO: $HOME vs $XDG vs custom database path.`
+Lethe stores all data in a single [SQLite][sql] database in one of three locations, depending on what environmental variables are set:
+
+Variable          | Database Path
+----------------- | -------------
+`LETHE_DB`        | `$LETHE_DB`
+`XDG_CONFIG_HOME` | `$XDG_CONFIG_HOME/lethe/lethe.db`
+`HOME`            | `$HOME/.lethe`
+
+You can change locations by changing your environment variables and moving your existing database file to the new location.
 
 ## Commands
 
@@ -45,3 +53,5 @@ or download the latest binary for your platform.
 ## Contributing
 
 Please submit all bug reports and feature requests to the issue tracker, thank you.
+
+[sql]: https://www.sqlite.org/
