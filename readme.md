@@ -29,7 +29,7 @@ $ lethe cat movies
 You can install Lethe using your Go tools...
 
 ```
-go get github.com/stvmln86/lethe@latest
+go install github.com/stvmln86/lethe@latest
 ```
 
 or download the latest binary for your platform.
