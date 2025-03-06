@@ -1,28 +1,24 @@
 # Lethe
 
-**Lethe** is a command-line note-taking engine, written in Go 1.23 by Stephen Malone. It's designed to let you quickly access and safely store your notes with a simple CLI API, revision tracking, import/export features and a non-proprietary database format.
-
-<details> <summary>Demo:</summary>
+**Lethe** is a command-line note-taking engine, written in Go 1.23 by Stephen Malone. It's designed to let you quickly access and safely store your notes with a simple CLI API, revision tracking and a non-proprietary database format.
 
 ```
-$ lethe
+$ lethe list
 movies
 project-ideas
 todo-2024
 
-$ lethe add movies "[ ] The Godfather"
-$ lethe log movies
+$ lethe join movies "[ ] The Godfather"
+$ lethe hist movies
 [0] 2025-03-04 10:11 - initial
 [1] 2025-03-05 22:37 - changed, removed 21 bytes
-[2] 2025-03-06 08:52 - added 18 bytes 
+[2] 2025-03-06 08:52 - added 18 bytes
 
-$ lethe cat movies
+$ lethe show movies
 [x] Apocalypse Now
 [x] Dog Day Afternoon
 [ ] The Godfather
 ```
-
-</details>
 
 ## Installation
 
@@ -52,7 +48,94 @@ All note names in Lethe are lowercase and only allow alphanumeric characters, hy
 
 ## Commands
 
-`TODO: Syntax explainer, abbreviations, basic commands.`
+### `list [TEXT]`
+
+Print the names of all existing notes, or notes with names containing `TEXT`. The search text is sanitised as per the above naming syntax.
+
+```
+$ lethe list
+movies
+project-ideas
+todo-2024
+
+$ lethe list TODO
+todo-2024
+```
+
+### `find TEXT`
+
+Print the names of all existing notes containing `TEXT`. The search text is case-insensitive.
+
+```
+$ lethe find "godfather"
+movies
+```
+
+### `show NOTE`
+
+Print the body of an existing note.
+
+```
+$ lethe show todo-2024
+[ ] Take more notes.
+```
+
+### `edit NOTE`
+
+Open a new or existing note in a temporary file in the default editor (according to `$EDITOR` or `$VISUAL`) and save the resulting changes.
+
+```
+$ lethe edit project-ideas
+```
+
+### `join NOTE LINES...`
+
+Append one or more lines of text to a new or existing note.
+
+```
+$ lethe join project-ideas "iphone app" "movie podcast"
+$ lethe show project-ideas
+iphone app
+movie podcast
+```
+
+### `make NOTE`
+
+Create a new empty note.
+
+```
+$ lethe make new-note
+```
+
+### `wipe NOTE`
+
+Delete an existing note and all its previous revisions.
+
+```
+$ lethe wipe old-note
+```
+
+### `hist NOTE`
+
+Print a list of an existing note's revisions.
+
+```
+$ lethe hist movies
+[0] 2025-03-04 10:11 - initial
+[1] 2025-03-05 22:37 - changed, removed 21 bytes
+[2] 2025-03-06 08:52 - added 18 bytes
+```
+
+### `prev NOTE`
+
+Revert an existing note to its previous revision.
+
+```
+$ lethe prev movies
+$ lethe hist movies
+[0] 2025-03-04 10:11 - initial
+[1] 2025-03-05 22:37 - changed, removed 21 bytes
+```
 
 ## Contributing
 
