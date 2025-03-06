@@ -46,6 +46,10 @@ Variable          | Database Path
 
 You can change locations by changing your environment variables and moving your existing database file to the new location.
 
+## Syntax
+
+All note names in Lethe are lowercase and only allow alphanumeric characters, hyphens and underscores. Names are sanitised before use, so attempting to create a note called `My Note 123!` will actually create `my-note-123`.
+
 ## Commands
 
 `TODO: Syntax explainer, abbreviations, basic commands.`
