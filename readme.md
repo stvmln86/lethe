@@ -32,7 +32,7 @@ You can install Lethe using your Go tools...
 go install github.com/stvmln86/lethe@latest
 ```
 
-or download the latest binary for your platform.
+or download the [latest binary release][rel] for your platform.
 
 ## Configuration
 
@@ -54,4 +54,5 @@ You can change locations by changing your environment variables and moving your 
 
 Please submit all bug reports and feature requests to the issue tracker, thank you.
 
+[rel]: https://github.com/stvmln86/lethe/releases/latest
 [sql]: https://www.sqlite.org/
