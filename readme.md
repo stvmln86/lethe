@@ -1,3 +1,3 @@
 # Lethe
 
-**Lethe** is a text-based virtual assistant, written in Go 1.24 by Stephen Malone.
+**Lethe** is a plaintext command-line note-taking engine, written in pure Python 3.13 by Stephen Malone.
