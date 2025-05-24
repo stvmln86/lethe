@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// Base returns a path's base name.
+// Base returns a path's base name string.
 func Base(orig string) string {
 	return filepath.Base(orig)
 }
@@ -16,7 +16,7 @@ func Dire(orig string) string {
 	return filepath.Dir(orig)
 }
 
-// Extn returns a path's file extension with a leading dot.
+// Extn returns a path's file extension string with a leading dot.
 func Extn(orig string) string {
 	base := Base(orig)
 	if clip := strings.Index(base, "."); clip != -1 {
@@ -26,7 +26,7 @@ func Extn(orig string) string {
 	return "."
 }
 
-// Join returns a path joined from a directory, name and extension.
+// Join returns a path string joined from a directory, name and extension.
 func Join(dire, name, extn string) string {
 	return filepath.Join(dire, name+extn)
 }
@@ -41,7 +41,7 @@ func Name(orig string) string {
 	return base
 }
 
-// Rename returns a path with a changed directory, name or extension.
+// Rename returns a path string with a different directory, name or extension.
 func Rename(orig, mode, swap string) string {
 	switch mode {
 	case "dire":
