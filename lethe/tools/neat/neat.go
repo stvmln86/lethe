@@ -1,4 +1,4 @@
-// Package neat implements value sanitisation functions.
+// Package neat implements string sanitisation and calculation functions.
 package neat
 
 import (
@@ -38,4 +38,11 @@ func Name(name string) string {
 func Path(path string) string {
 	path = strings.TrimSpace(path)
 	return filepath.Clean(path)
+}
+
+// Substring returns true if a string contains a case-insensitive substring.
+func Substring(text, subs string) bool {
+	text = strings.ToLower(text)
+	subs = strings.ToLower(subs)
+	return strings.Contains(text, subs)
 }

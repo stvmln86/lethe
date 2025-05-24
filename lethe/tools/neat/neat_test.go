@@ -29,3 +29,13 @@ func TestPath(t *testing.T) {
 	path := Path("\t/././path\n")
 	assert.Equal(t, "/path", path)
 }
+
+func TestSubstring(t *testing.T) {
+	// success, true
+	ok := Substring("TEST", "t")
+	assert.True(t, ok)
+
+	// success, false
+	ok = Substring("TEST", "nope")
+	assert.False(t, ok)
+}
