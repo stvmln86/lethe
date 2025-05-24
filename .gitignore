@@ -1,2 +1,5 @@
 .DS_Store
-*.db
+.pytest_cache
+.mypy_cache
+
+*.pyc
