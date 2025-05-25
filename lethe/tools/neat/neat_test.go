@@ -31,11 +31,11 @@ func TestPath(t *testing.T) {
 }
 
 func TestSubstring(t *testing.T) {
-	// success, true
+	// success - true
 	ok := Substring("TEST", "t")
 	assert.True(t, ok)
 
-	// success, false
+	// success - false
 	ok = Substring("TEST", "nope")
 	assert.False(t, ok)
 }
