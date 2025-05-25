@@ -19,6 +19,19 @@ func TestDelete(t *testing.T) {
 	assert.NoError(t, err)
 }
 
+func TestExists(t *testing.T) {
+	// setup
+	orig := test.MockFile(t, "alpha.extn")
+
+	// success - true
+	ok := Exists(orig)
+	assert.True(t, ok)
+
+	// success - false
+	ok = Exists("/nope")
+	assert.False(t, ok)
+}
+
 func TestList(t *testing.T) {
 	// setup
 	dire := test.MockDire(t)

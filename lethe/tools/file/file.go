@@ -2,6 +2,7 @@
 package file
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
 	"slices"
@@ -12,6 +13,12 @@ import (
 // Delete deletes an existing file.
 func Delete(orig string) error {
 	return os.Remove(orig)
+}
+
+// Exists returns true if a file exists.
+func Exists(orig string) bool {
+	_, err := os.Stat(orig)
+	return !errors.Is(err, os.ErrNotExist)
 }
 
 // List returns a sorted slice of all files in a directory with an extension.
