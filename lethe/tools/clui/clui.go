@@ -21,12 +21,12 @@ func Env(name string) (string, error) {
 	}
 }
 
-// Parse returns a parsed argument map from a parameter slice and argument slice.
-// Parameters containing a colon will use the text after the colon as a default.
-func Parse(paras, elems []string) (map[string]string, error) {
+// Parse returns a parsed argument map from a flag slice and argument slice. Flags
+// containing a colon will use the text after the colon as a default.
+func Parse(flags, elems []string) (map[string]string, error) {
 	var pairs = make(map[string]string)
-	for i, para := range paras {
-		name, dflt, ok := strings.Cut(para, ":")
+	for i, flag := range flags {
+		name, dflt, ok := strings.Cut(flag, ":")
 
 		switch {
 		case i >= len(elems) && ok:
